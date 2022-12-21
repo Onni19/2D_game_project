@@ -12,7 +12,6 @@ class Bullet(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        #print(y)
         self.angle = angle
         self.speed = 13
         # calculate speed
