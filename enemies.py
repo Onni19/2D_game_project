@@ -16,7 +16,7 @@ for enemy in enemy_types:
         temp_list = []
         # define number of frames
         for i in range(NUMBER_Of_FRAMES):
-            img = pygame.image.load(images_folder_path + f'enemies/{enemy}/{animation}/{i}.png').convert_alpha()
+            img = pygame.image.load(images_path + f'enemies/{enemy}/{animation}/{i}.png').convert_alpha()
             img_width = img.get_width()
             img_height = img.get_height()
             img = pygame.transform.scale(img, (int(img_width * ENEMY_SIZE), int(img_height * ENEMY_SIZE)))
@@ -26,15 +26,18 @@ for enemy in enemy_types:
 
 
 class Enemies(pygame.sprite.Sprite):
-    def __init__(self, health, animation_list, x, y, speed):
+    def __init__(self, health, animation_list, x, y):
         pygame.sprite.Sprite.__init__(self)
         self.alive = True
-        self.speed = speed
+        self.speed = ENEMY_SPEED
         self.health = health
         self.animation_list = animation_list
         self.frame_index = 0
         self.action = 0
         self.update_time = pygame.time.get_ticks()
+
+        self.last_attack = pygame.time.get_ticks()
+        self.attack_cooldown = 1000  # 1000ms difference between two attacks
 
         # select starting image
         self.image = self.animation_list[self.action][self.frame_index]
@@ -66,18 +69,29 @@ class Enemies(pygame.sprite.Sprite):
             self.frame_index = 0
             self.new_time = pygame.time.get_ticks()
 
-    def update(self) -> None:
-        if self.alive == True:
-            # check the collision with bullet
+    def update(self, target):
+
+        if self.alive:
+            # collision with bullet
             if pygame.sprite.spritecollide(self, bullet_group, True):
-                self.health -= 25  # print('hit')
-            # check if the enemy has reached the castle
-            target = Castle()
+                self.health -= 25
+                # print('hit')
+
+            # enemy has reached the castle-collision with castle
             if self.rect.right > target.rect.left:
                 self.update_action(1)  # print('reached castle')
             # move enemy
             if self.action == 0:
                 self.rect.x += self.speed  # update rectangle position
+            # attack
+            if self.action == 1:
+                if pygame.time.get_ticks() - self.last_attack > self.attack_cooldown:
+                    target.health -= 25
+                    if target.health <= 0:
+                        target.health = 0
+                    #print(target.health)
+                    self.last_attack = pygame.time.get_ticks()
+
             # if heath has dropped to  zero
             if self.health <= 0:
                 target.money += 100

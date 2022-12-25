@@ -16,17 +16,18 @@ FPS = 60
 
 # castle scale
 SCALE = 0.30
-BULLET_SIZE = 0.050
+BULLET_SIZE = 0.028
 BULLET_SPEED_INITIAL = 10
 GOOD_CASTLE_INITIAL_HEALTH = 1000
 
 # enemy
+ENEMY_SPEED = 10
 NUMBER_Of_FRAMES = 20
 ENEMY_SIZE = 0.30
 ANIMATION_COOLDOWN = 100
 
 # load image folder path
-images_folder_path = 'assets/images/'
+images_path = 'assets/images/'
 
 # create bullet groups
 bullet_group = pygame.sprite.Group()
