@@ -1,25 +1,27 @@
-import pygame.transform
-
-from settings import *
+import pygame
 
 
-class Images():
+def process_images():
+    # load images
+    bad_castle_img = pygame.image.load('images/castle/bad100.png').convert_alpha()
+    bad_castle_img = pygame.transform.scale(bad_castle_img,
+                                            (int(bad_castle_img.get_width() * 0.3), int(bad_castle_img.get_height() * 0.3)))
 
-    def image_process(self, image, scale):
-        self.image = pygame.image.load(image).convert_alpha()
-        self.width = self.image.get_width()
-        self.height = self.image.get_height()
+    bg = pygame.image.load('images/background/2.png').convert_alpha()
+    bg = pygame.transform.scale(bg, (int(bg.get_width()), int(bg.get_height())))
+    bg1 = pygame.image.load('images/background/1.png').convert_alpha()
 
-        self.image = pygame.transform.scale(self.image, (int(self.width * scale), int(self.height * scale)))
+    backgr = pygame.image.load('images/GUI/background-removebg-preview.png').convert_alpha()
+    backgr1 = pygame.transform.scale(backgr, (int(backgr.get_width() * 0.2), int(backgr.get_height() * 0.195)))
+    backgr2 = pygame.transform.scale(backgr, (int(backgr.get_width() * 0.28), int(backgr.get_height() * 0.195)))
+    button1 = pygame.image.load('images/GUI/background1.png').convert_alpha()
+    button2 = pygame.image.load('images/GUI/background2.png').convert_alpha()
+    button3 = pygame.image.load('images/GUI/background3.png').convert_alpha()
+    button4 = pygame.image.load('images/GUI/background4.png').convert_alpha()
 
-        return self.image
+    tower100 = pygame.image.load('images/castle/tower1001.png').convert_alpha()
 
-    def load_bg(self):
-        # load images
-        self.bg = pygame.image.load(images_path + 'bg_4.png').convert_alpha()
-        screen.blit(self.bg, (0, 0))  # load bg in screen
-
-    def run(self):
-        self.load_bg()
-
-
+    # button images
+    repair_img = pygame.image.load('images/GUI/hummer.png')
+    armour_img = pygame.image.load('images/GUI/shield.png')
+    return bad_castle_img, bg, bg1, backgr, backgr1, backgr2, button1, button2, button3, button4, tower100, repair_img, armour_img
