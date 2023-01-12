@@ -117,15 +117,15 @@ while run:
         if repair_button.draw(display, active):
             good_castle.repair()
 
-        if tower_button.draw(display, active):
-            if good_castle.money >= TOWER_COST and len(tower_group) < len(tower_positions):
-                tower = Tower(display, good_castle.images_tower,
-                              tower_positions[len(tower_group)][0], tower_positions[len(tower_group)][1], 1)
-                good_castle.money -= TOWER_COST
-                tower_group.add(tower)
-
         if armour_button.draw(display, active):
             good_castle.armour()
+            
+        if tower_button.draw(display, active):
+           if good_castle.money >= TOWER_COST and len(tower_group) < len(tower_positions):
+               tower = Tower(display, good_castle.images_tower,
+                              tower_positions[len(tower_group)][0], tower_positions[len(tower_group)][1], 1)
+               good_castle.money -= TOWER_COST
+               tower_group.add(tower)     
 
         if good_castle.health > 0:
 
