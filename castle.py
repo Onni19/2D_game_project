@@ -39,10 +39,17 @@ class Castle():
         #pygame.draw.rect(self.display, (255, 255, 255), self.rect, 1)
         self.display.blit(self.current_image, self.rect)
 
-    def repair(self):
+   def repair(self):
         if self.money >= 1000 and self.health < self.max_health:
             self.health += 500
             self.money -= 1000
+            if self.health > self.max_health:
+                self.health = self.max_health
+
+    def armour(self):
+        if self.money >= 800:
+            self.max_health += 500
+            self.money -= 800
             if self.health > self.max_health:
                 self.health = self.max_health
                     
