@@ -60,4 +60,7 @@ class Castle():
         self.shoot()
         bullet_group.update()
         bullet_group.draw(screen)
-        # print(len(bullet_group))
+        # print(len(bullet_group)
+          
+          
+          
