@@ -1,10 +1,11 @@
 import pygame
 
+ image1 = pygame.image.load('images/crosshair/crosshair-removebg-preview.png').convert_alpha()
+ image2 = pygame.image.load('images/crosshair/hand.png').convert_alpha()
 
 class Crosshair:
     def __init__(self):
-        image1 = pygame.image.load('images/crosshair/crosshair-removebg-preview.png').convert_alpha()
-        image2 = pygame.image.load('images/crosshair/hand.png').convert_alpha()
+       
         self.width1 = image1.get_width()
         self.height1 = image1.get_height()
         self.width2 = image2.get_width()
