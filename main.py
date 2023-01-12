@@ -171,8 +171,6 @@ while run:
                     level_difficulty = 0
                     enemy_group.empty()
 
-                # draw crosshair
-
         # check game_over
         else:
             #print("start")
